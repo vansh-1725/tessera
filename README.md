@@ -92,4 +92,4 @@ tessera/
 
 ## 👨‍💻 Built by
 
-Vansh Jadav — [@YOUR-GITHUB](https://github.com/vansh-1725)
+Vansh Jadav — [@vansh-1725](https://github.com/vansh-1725)
