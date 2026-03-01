@@ -1,91 +1,95 @@
-# 🧩 Tessera — Setup Guide
+# 🧩 Tessera — Knowledge, assembled.
 
-## Ye kya hai?
-Tessera ka full Next.js project. Abhi sirf Landing Page complete hai.
-Baaki pages step by step build karenge.
+An AI-powered study platform where you upload PDFs or paste YouTube links, and the AI builds quizzes, summaries, and tracks your daily progress.
 
 ---
 
-## Step 1 — Project apne system pe chalao
+## ✨ Features
 
-### Prerequisites (pehle install karo)
-- Node.js v18+ → https://nodejs.org (LTS version download karo)
-- VS Code → https://code.visualstudio.com
+- 📄 **PDF Upload & Quiz Generation** — Upload any PDF, AI generates a full quiz instantly
+- ▶️ **YouTube Integration** — Paste a video URL, get a summary + quiz
+- 🤖 **AI Chat Agent** — Conversational AI that knows your uploaded materials
+- 📈 **Progress Dashboard** — Daily scores, streaks, and improvement tracking
+- 🔐 **Authentication** — Secure email/password login with NextAuth.js
 
-### Commands (terminal mein chalao)
+---
 
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 15, React, Tailwind CSS |
+| Backend | Next.js API Routes |
+| Database | PostgreSQL (Supabase) + Prisma ORM |
+| Auth | NextAuth.js |
+| AI | OpenAI GPT-4 + LangChain |
+| Storage | AWS S3 |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
 ```bash
-# 1. Is folder mein jao
+git clone https://github.com/YOUR-USERNAME/tessera.git
 cd tessera
+```
 
-# 2. Saari dependencies install karo
+### 2. Install dependencies
+```bash
 npm install
+```
 
-# 3. Environment file banao
+### 3. Setup environment variables
+```bash
 cp .env.example .env.local
+```
+Fill in your keys in `.env.local` and create a `.env` file with your `DATABASE_URL`.
 
-# 4. Dev server start karo
+### 4. Push database schema
+```bash
+npx prisma db push
+```
+
+### 5. Run the dev server
+```bash
 npm run dev
 ```
 
-### Browser mein kholo
-```
-http://localhost:3000
-```
-
-Bas! Landing page live hoga. 🎉
+Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## Current Status
-
-| Page | Status |
-|------|--------|
-| Landing Page (/) | ✅ Complete |
-| Login (/auth/login) | 🔜 Step 2 |
-| Register (/auth/register) | 🔜 Step 2 |
-| Dashboard | 🔜 Step 3 |
-| PDF Upload | 🔜 Step 3 |
-| Quiz | 🔜 Step 3 |
-| YouTube | 🔜 Step 4 |
-| AI Chat | 🔜 Step 5 |
-| Progress | 🔜 Step 6 |
-
----
-
-## Project Structure
-
+## 📁 Project Structure
 ```
 tessera/
 ├── app/
-│   ├── page.tsx          ← Landing Page (done ✅)
-│   ├── layout.tsx        ← Root layout
-│   ├── globals.css       ← Brand styles + fonts
-│   └── auth/
-│       ├── login/        ← Placeholder
-│       └── register/     ← Placeholder
-├── prisma/
-│   └── schema.prisma     ← Full database schema ready
-├── .env.example          ← Copy to .env.local
-├── tailwind.config.ts    ← Brand colors configured
-└── package.json
+│   ├── api/          # Backend API routes
+│   ├── auth/         # Login & Register pages
+│   ├── dashboard/    # Main dashboard
+│   ├── upload/       # PDF upload (coming soon)
+│   ├── youtube/      # YouTube processing (coming soon)
+│   └── chat/         # AI chat agent (coming soon)
+├── components/       # Reusable UI components
+├── lib/              # Auth, DB, AI helpers
+├── prisma/           # Database schema
+└── public/           # Static assets
 ```
 
 ---
 
-## Vercel pe Deploy karna (optional, abhi)
+## 📌 Roadmap
 
-```bash
-# Vercel CLI install karo
-npm i -g vercel
-
-# Deploy karo
-vercel
-```
-
-Ye tumhe ek live URL dega jaise: `tessera-xyz.vercel.app`
+- [x] Landing page
+- [x] Authentication (register + login)
+- [ ] PDF upload + quiz generation
+- [ ] YouTube integration
+- [ ] AI chat agent
+- [ ] Progress dashboard
+- [ ] Resource library
 
 ---
 
-## Next Step
-Jab landing page theek lagey, bolo aur hum **Authentication (Step 2)** start karenge.
+## 👨‍💻 Built by
+
+Vansh Jadav — [@YOUR-GITHUB](https://github.com/YOUR-USERNAME)
