@@ -1,0 +1,156 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String?
+  image     String?
+  createdAt DateTime @default(now())
+
+  sessions   Session[]
+  accounts   Account[]
+  documents  Document[]
+  quizzes    QuizAttempt[]
+  chats      ChatSession[]
+  progress   DailyProgress[]
+  streak     Streak?
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Document {
+  id         String   @id @default(cuid())
+  userId     String
+  title      String
+  type       DocType
+  s3Key      String?
+  youtubeUrl String?
+  content    String   @db.Text
+  summary    String?  @db.Text
+  tags       String[]
+  createdAt  DateTime @default(now())
+
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizzes Quiz[]
+}
+
+model Quiz {
+  id         String     @id @default(cuid())
+  documentId String
+  title      String
+  difficulty Difficulty @default(MEDIUM)
+  questions  Json
+  createdAt  DateTime   @default(now())
+
+  document Document      @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  attempts QuizAttempt[]
+}
+
+model QuizAttempt {
+  id          String   @id @default(cuid())
+  userId      String
+  quizId      String
+  score       Float
+  answers     Json
+  timeTaken   Int
+  completedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+}
+
+model ChatSession {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String   @default("New Chat")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages Message[]
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      Role
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  session ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+}
+
+model DailyProgress {
+  id            String   @id @default(cuid())
+  userId        String
+  date          DateTime @db.Date
+  quizzesTaken  Int      @default(0)
+  avgScore      Float    @default(0)
+  studyMinutes  Int      @default(0)
+  topicsStudied String[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+}
+
+model Streak {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  current    Int      @default(0)
+  longest    Int      @default(0)
+  lastActive DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum DocType {
+  PDF
+  YOUTUBE
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum Role {
+  USER
+  ASSISTANT
+}

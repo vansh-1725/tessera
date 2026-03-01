@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --obsidian: #0A0E1A;
+  --void: #060912;
+  --tessera-blue: #2A6FDB;
+  --mosaic-cyan: #00D4FF;
+  --slate-surface: #161D30;
+  --slate-border: #1e2a45;
+  --slate-muted: #3D4F72;
+  --slate-text: #94A3C4;
+  --slate-bright: #F0F4FF;
+  --amber-tile: #F5A623;
+  --emerald-tile: #10D98A;
+  --rose-tile: #FF4D6D;
+  --violet-tile: #8B5CF6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--void);
+  color: var(--slate-bright);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--slate-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-muted);
+}
+
+/* Selection */
+::selection {
+  background: rgba(42, 111, 219, 0.3);
+  color: var(--slate-bright);
+}
+
+/* Utility classes */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #F0F4FF 0%, #94A3C4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #2A6FDB 0%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-mosaic {
+    background: linear-gradient(135deg, #2A6FDB 0%, #8B5CF6 50%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(22, 29, 48, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(30, 42, 69, 0.8);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 24px rgba(42, 111, 219, 0.3);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.2);
+  }
+
+  .border-gradient {
+    border: 1px solid transparent;
+    background: linear-gradient(var(--slate-surface), var(--slate-surface)) padding-box,
+                linear-gradient(135deg, #2A6FDB, #00D4FF) border-box;
+  }
+}
