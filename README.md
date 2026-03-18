@@ -2,14 +2,34 @@
 
 An AI-powered study platform where you upload PDFs or paste YouTube links, and the AI builds quizzes, summaries, and tracks your daily progress.
 
+> 🚧 Currently in active development
+
+---
+
+## ✅ Current Status
+
+| Feature | Status |
+|---|---|
+| Landing Page | ✅ Complete |
+| User Registration | ✅ Complete |
+| User Login | ✅ Complete |
+| Dashboard + Sidebar | ✅ Complete |
+| PDF Upload + Text Extraction | ✅ Complete |
+| AI Quiz Generation (Groq) | ✅ Complete |
+| Quiz Taking + Results | ✅ Complete |
+| YouTube Integration | 🔜 Coming |
+| AI Chat Agent | 🔜 Coming |
+| Progress Tracking | 🔜 Coming |
+| Resource Library | 🔜 Coming |
+
 ---
 
 ## ✨ Features
 
 - 📄 **PDF Upload & Quiz Generation** — Upload any PDF, AI generates a full quiz instantly
-- ▶️ **YouTube Integration** — Paste a video URL, get a summary + quiz
-- 🤖 **AI Chat Agent** — Conversational AI that knows your uploaded materials
-- 📈 **Progress Dashboard** — Daily scores, streaks, and improvement tracking
+- ▶️ **YouTube Integration** — Paste a video URL, get a summary + quiz *(coming soon)*
+- 🤖 **AI Chat Agent** — Conversational AI that knows your uploaded materials *(coming soon)*
+- 📈 **Progress Dashboard** — Daily scores, streaks, and improvement tracking *(coming soon)*
 - 🔐 **Authentication** — Secure email/password login with NextAuth.js
 
 ---
@@ -22,8 +42,9 @@ An AI-powered study platform where you upload PDFs or paste YouTube links, and t
 | Backend | Next.js API Routes |
 | Database | PostgreSQL (Supabase) + Prisma ORM |
 | Auth | NextAuth.js |
-| AI | OpenAI GPT-4 + LangChain |
-| Storage | AWS S3 |
+| AI | Groq (LLaMA 3.3 70B) |
+| PDF Parsing | unpdf |
+| Storage | AWS S3 *(coming soon)* |
 
 ---
 
@@ -31,7 +52,7 @@ An AI-powered study platform where you upload PDFs or paste YouTube links, and t
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/YOUR-USERNAME/tessera.git
+git clone https://github.com/vansh-1725/tessera.git
 cd tessera
 ```
 
@@ -44,7 +65,17 @@ npm install
 ```bash
 cp .env.example .env.local
 ```
+
 Fill in your keys in `.env.local` and create a `.env` file with your `DATABASE_URL`.
+
+Required keys:
+```
+DATABASE_URL=
+DIRECT_URL=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+GROQ_API_KEY=
+```
 
 ### 4. Push database schema
 ```bash
@@ -64,16 +95,31 @@ Open [http://localhost:3000](http://localhost:3000)
 ```
 tessera/
 ├── app/
-│   ├── api/          # Backend API routes
-│   ├── auth/         # Login & Register pages
-│   ├── dashboard/    # Main dashboard
-│   ├── upload/       # PDF upload (coming soon)
-│   ├── youtube/      # YouTube processing (coming soon)
-│   └── chat/         # AI chat agent (coming soon)
-├── components/       # Reusable UI components
-├── lib/              # Auth, DB, AI helpers
-├── prisma/           # Database schema
-└── public/           # Static assets
+│   ├── api/
+│   │   ├── auth/         # NextAuth + Register API
+│   │   ├── pdf/          # PDF upload + text extraction
+│   │   └── quiz/         # Quiz generate + fetch API
+│   ├── auth/
+│   │   ├── login/        # Login page ✅
+│   │   └── register/     # Register page ✅
+│   ├── dashboard/
+│   │   ├── layout.tsx    # Sidebar layout ✅
+│   │   ├── page.tsx      # Dashboard home ✅
+│   │   ├── upload/       # PDF upload page ✅
+│   │   ├── quiz/[id]/    # Quiz taking page ✅
+│   │   ├── youtube/      # YouTube page 🔜
+│   │   ├── chat/         # AI Chat page 🔜
+│   │   ├── library/      # Library page 🔜
+│   │   └── profile/      # Profile page 🔜
+│   └── page.tsx          # Landing page ✅
+├── components/
+│   └── shared/
+│       └── AuthProvider.tsx
+├── lib/
+│   ├── auth/authOptions.ts
+│   └── db/prisma.ts
+└── prisma/
+    └── schema.prisma
 ```
 
 ---
@@ -82,10 +128,13 @@ tessera/
 
 - [x] Landing page
 - [x] Authentication (register + login)
-- [ ] PDF upload + quiz generation
+- [x] Dashboard with sidebar
+- [x] PDF upload + text extraction
+- [x] AI quiz generation
+- [x] Quiz taking + results screen
 - [ ] YouTube integration
 - [ ] AI chat agent
-- [ ] Progress dashboard
+- [ ] Progress dashboard with charts
 - [ ] Resource library
 
 ---
