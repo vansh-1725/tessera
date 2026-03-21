@@ -3,6 +3,7 @@ import { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { Eye, EyeOff } from "lucide-react";
 
 function Logo() {
   return (
@@ -120,8 +121,8 @@ function LoginForm() {
                       style={{ position: "absolute", right: 12, top: "50%",
                         transform: "translateY(-50%)", background: "none",
                         border: "none", cursor: "pointer", color: "#64748b",
-                        fontSize: 18, padding: 0, lineHeight: 1 }}>
-                      {showPassword ? "🙈" : "👁️"}
+                        padding: 0, lineHeight: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
                   )}
                 </div>

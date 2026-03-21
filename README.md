@@ -8,60 +8,63 @@ An AI-powered study platform where you upload PDFs or paste YouTube links, and t
 
 ## ✅ Current Status
 
-| Feature | Status |
-|---|---|
-| Landing Page | ✅ Complete |
-| User Registration | ✅ Complete |
-| User Login | ✅ Complete |
-| Dashboard + Sidebar | ✅ Complete |
+| Feature                      | Status      |
+| ---------------------------- | ----------- |
+| Landing Page                 | ✅ Complete |
+| User Registration            | ✅ Complete |
+| User Login                   | ✅ Complete |
+| Dashboard + Sidebar          | ✅ Complete |
 | PDF Upload + Text Extraction | ✅ Complete |
-| AI Quiz Generation (Groq) | ✅ Complete |
-| Quiz Taking + Results | ✅ Complete |
-| YouTube Integration | 🔜 Coming |
-| AI Chat Agent | 🔜 Coming |
-| Progress Tracking | 🔜 Coming |
-| Resource Library | 🔜 Coming |
+| AI Quiz Generation (Groq)    | ✅ Complete |
+| Quiz Taking + Results        | ✅ Complete |
+| YouTube Integration          | 🔜 Coming   |
+| AI Chat Agent                | 🔜 Coming   |
+| Progress Tracking            | 🔜 Coming   |
+| Resource Library             | 🔜 Coming   |
 
 ---
 
 ## ✨ Features
 
 - 📄 **PDF Upload & Quiz Generation** — Upload any PDF, AI generates a full quiz instantly
-- ▶️ **YouTube Integration** — Paste a video URL, get a summary + quiz *(coming soon)*
-- 🤖 **AI Chat Agent** — Conversational AI that knows your uploaded materials *(coming soon)*
-- 📈 **Progress Dashboard** — Daily scores, streaks, and improvement tracking *(coming soon)*
+- ▶️ **YouTube Integration** — Paste a video URL, get a summary + quiz _(coming soon)_
+- 🤖 **AI Chat Agent** — Conversational AI that knows your uploaded materials _(coming soon)_
+- 📈 **Progress Dashboard** — Daily scores, streaks, and improvement tracking _(coming soon)_
 - 🔐 **Authentication** — Secure email/password login with NextAuth.js
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | Next.js 15, React, Tailwind CSS |
-| Backend | Next.js API Routes |
-| Database | PostgreSQL (Supabase) + Prisma ORM |
-| Auth | NextAuth.js |
-| AI | Groq (LLaMA 3.3 70B) |
-| PDF Parsing | unpdf |
-| Storage | AWS S3 *(coming soon)* |
+| Layer       | Technology                         |
+| ----------- | ---------------------------------- |
+| Frontend    | Next.js 15, React, Tailwind CSS    |
+| Backend     | Next.js API Routes                 |
+| Database    | PostgreSQL (Supabase) + Prisma ORM |
+| Auth        | NextAuth.js                        |
+| AI          | Groq (LLaMA 3.3 70B)               |
+| PDF Parsing | unpdf                              |
+| Storage     | AWS S3 _(coming soon)_             |
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1. Clone the repo
+
 ```bash
 git clone https://github.com/vansh-1725/tessera.git
 cd tessera
 ```
 
 ### 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Setup environment variables
+
 ```bash
 cp .env.example .env.local
 ```
@@ -69,6 +72,7 @@ cp .env.example .env.local
 Fill in your keys in `.env.local` and create a `.env` file with your `DATABASE_URL`.
 
 Required keys:
+
 ```
 DATABASE_URL=
 DIRECT_URL=
@@ -78,11 +82,13 @@ GROQ_API_KEY=
 ```
 
 ### 4. Push database schema
+
 ```bash
 npx prisma db push
 ```
 
 ### 5. Run the dev server
+
 ```bash
 npm run dev
 ```
@@ -92,6 +98,7 @@ Open [http://localhost:3000](http://localhost:3000)
 ---
 
 ## 📁 Project Structure
+
 ```
 tessera/
 ├── app/
@@ -132,7 +139,7 @@ tessera/
 - [x] PDF upload + text extraction
 - [x] AI quiz generation
 - [x] Quiz taking + results screen
-- [ ] YouTube integration
+- [x] YouTube integration
 - [ ] AI chat agent
 - [ ] Progress dashboard with charts
 - [ ] Resource library

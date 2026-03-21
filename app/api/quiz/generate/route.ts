@@ -13,14 +13,21 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 
-    const { documentId, difficulty = "MEDIUM", questionCount = 5 } = await req.json();
+    const {
+      documentId,
+      difficulty = "MEDIUM",
+      questionCount = 5,
+    } = await req.json();
 
     const document = await prisma.document.findUnique({
       where: { id: documentId },
     });
 
     if (!document) {
-      return NextResponse.json({ error: "Document not found" }, { status: 404 });
+      return NextResponse.json(
+        { error: "Document not found" },
+        { status: 404 },
+      );
     }
 
     const content = document.content.slice(0, 8000);
@@ -32,7 +39,9 @@ Difficulty: ${difficulty}
 Text:
 ${content}
 
-Return ONLY a valid JSON array with this exact structure, no extra text, no markdown:
+IMPORTANT: Generate all questions and options in ENGLISH only, regardless of the source language.
+
+Return ONLY a valid JSON array with this exact structure, no extra text, no markdown backticks:
 [
   {
     "question": "Question text here?",
@@ -53,7 +62,10 @@ correctAnswer is the index (0-3) of the correct option.`;
       const cleaned = rawText.replace(/```json|```/g, "").trim();
       questions = JSON.parse(cleaned);
     } catch {
-      return NextResponse.json({ error: "Failed to parse quiz questions" }, { status: 500 });
+      return NextResponse.json(
+        { error: "Failed to parse quiz questions" },
+        { status: 500 },
+      );
     }
 
     const quiz = await prisma.quiz.create({
@@ -66,9 +78,11 @@ correctAnswer is the index (0-3) of the correct option.`;
     });
 
     return NextResponse.json({ success: true, quizId: quiz.id, questions });
-
   } catch (error: any) {
     console.error("Quiz generate error:", error);
-    return NextResponse.json({ error: "Something went wrong: " + error.message }, { status: 500 });
+    return NextResponse.json(
+      { error: "Something went wrong: " + error.message },
+      { status: 500 },
+    );
   }
 }
