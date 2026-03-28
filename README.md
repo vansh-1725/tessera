@@ -18,7 +18,7 @@ An AI-powered study platform where you upload PDFs or paste YouTube links, and t
 | AI Quiz Generation (Groq)    | ✅ Complete |
 | Quiz Taking + Results        | ✅ Complete |
 | YouTube Integration          | ✅ Complete |
-| AI Chat Agent                | 🔜 Coming   |
+| AI Chat Agent                | ✅ Complete |
 | Progress Tracking            | 🔜 Coming   |
 | Resource Library             | 🔜 Coming   |
 
